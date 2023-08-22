@@ -1,0 +1,22 @@
+{
+  "name": "habits_server",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "tsx watch src/server.ts"
+  },
+  "keywords": [],
+  "author": "Misael Lopes",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/cors": "^8.3.0",
+    "@prisma/client": "^5.1.1",
+    "fastify": "^4.21.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.1.1",
+    "tsx": "^3.12.7",
+    "typescript": "^5.1.6"
+  }
+}
