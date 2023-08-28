@@ -11,7 +11,7 @@ export function SummaryTable() {
 
   return (
     <main className="w-full flex">
-      <div className="grid grid-rows-7 grid-flow-row gap-3 ">
+      <div className="grid grid-rows-7 grid-flow-row gap-3 pb-4">
         {weekDays.map((day, index) => {
           return (
             <div
@@ -23,9 +23,15 @@ export function SummaryTable() {
           )
         })}
       </div>
-      <div className="grid grid-rows-7 grid-flow-col gap-3">
+      <div className="grid grid-rows-7 grid-flow-col gap-3 overflow-x-auto pb-2">
         {summaryDates.map((date) => {
-          return <HabitDay key={date.toDateString()} />
+          return (
+            <HabitDay
+              key={date.toDateString()}
+              amount={5}
+              completed={Math.round(Math.random() * 5)}
+            />
+          )
         })}
         {amountOfDaysToFill > 0 &&
           Array.from({ length: amountOfDaysToFill }).map((_, index) => {
