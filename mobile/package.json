@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.2.2",
-    "@react-navigation/native": "^6.1.2",
-    "@react-navigation/native-stack": "^6.9.8",
+    "@react-navigation/native": "^6.1.7",
+    "@react-navigation/native-stack": "^6.9.13",
     "axios": "^1.2.3",
     "clsx": "^1.2.1",
     "dayjs": "^1.11.7",
