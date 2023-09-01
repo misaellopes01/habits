@@ -77,6 +77,16 @@ export function HabitsList({ date, onCompletedChange }: HabitsListProps) {
           </Checkbox.Root>
         )
       })}
+      {isDateInPast && habitsInfo?.possibleHabits.length > 0 && (
+        <span className="text-red-300 mt-2 text-center">
+          Não pode editar hábitos numa data passada!
+        </span>
+      )}
+      {isDateInPast && habitsInfo?.possibleHabits.length < 1 && (
+        <span className="text-red-300 mt-2 text-center">
+          Não possui hábitos disponíveis nesta data!
+        </span>
+      )}
     </div>
   )
 }
