@@ -2,8 +2,8 @@ import { View, Text, ScrollView, Alert } from 'react-native'
 import { Header } from '../components/Header'
 import { DAY_SIZE, HabitDay } from '../components/HabitDay'
 import { generateRangeDatesFromYearStart } from '../utils/generate-range-between-dates'
-import { useNavigation } from '@react-navigation/native'
-import { useEffect, useState } from 'react'
+import { useFocusEffect, useNavigation } from '@react-navigation/native'
+import { useCallback, useState } from 'react'
 import { api } from '../lib/axios'
 import { Loading } from '../components/Loading'
 import dayjs from 'dayjs'
@@ -39,9 +39,11 @@ export function Home() {
     }
   }
 
-  useEffect(() => {
-    fetchHabitsSummary()
-  }, [])
+  useFocusEffect(
+    useCallback(() => {
+      fetchHabitsSummary()
+    }, []),
+  )
 
   if (loading) {
     return <Loading />
@@ -66,20 +68,23 @@ export function Home() {
         contentContainerStyle={{ paddingBottom: 100 }}
       >
         <View className="flex-row flex-wrap">
-          {datesFromStartOfTheYear.map((date) => {
-            const dayInSummary = summary.find((day) => {
-              return dayjs(date).isSame(day.date, 'day')
-            })
-            return (
-              <HabitDay
-                key={date.toISOString()}
-                onPress={() => navigate('habit', { date: date.toISOString() })}
-                date={date}
-                amount={dayInSummary?.amount}
-                completed={dayInSummary?.completed}
-              />
-            )
-          })}
+          {summary &&
+            datesFromStartOfTheYear.map((date) => {
+              const dayInSummary = summary.find((day) => {
+                return dayjs(date).isSame(day.date, 'day')
+              })
+              return (
+                <HabitDay
+                  key={date.toISOString()}
+                  onPress={() =>
+                    navigate('habit', { date: date.toISOString() })
+                  }
+                  date={date}
+                  amount={dayInSummary?.amount}
+                  completed={dayInSummary?.completed}
+                />
+              )
+            })}
           {amountOfDaysToFill > 0 &&
             Array.from({ length: amountOfDaysToFill }).map((_, index) => (
               <View
